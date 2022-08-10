@@ -2,7 +2,7 @@
     package="com.example.todo_app">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="todo_app"
+        android:label="Todo App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
