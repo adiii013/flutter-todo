@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/authentication.dart';
 import 'package:todo_app/loading.dart';
-import 'package:todo_app/todo_list.dart';
+import 'package:todo_app/todo_data.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +27,18 @@ class MyApp extends StatelessWidget {
         }
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: TodoList(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, userSnapshot) {
+              if (userSnapshot.hasData) {
+                return TodoData();
+              } else {
+                return AuthPage();
+              }
+            },
+          ),
           theme: ThemeData(
-            scaffoldBackgroundColor: Colors.grey[900],
+            scaffoldBackgroundColor: Colors.white,
             primarySwatch: Colors.pink,
           ),
         );
