@@ -129,12 +129,12 @@ class _TodoDataState extends State<TodoData> {
                   style: const TextStyle(
                     fontSize: 18,
                     height: 1.5,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   autofocus: true,
                   decoration: const InputDecoration(
                     hintText: "eg. exercise",
-                    hintStyle: TextStyle(color: Colors.white70),
+                    hintStyle: TextStyle(color: Colors.black54),
                     border: InputBorder.none,
                   ),
                 ),
@@ -149,6 +149,7 @@ class _TodoDataState extends State<TodoData> {
                         await DatabaseService()
                             .createNewTodo(todoTitleController.text.trim());
                         Navigator.pop(context);
+                        todoTitleController.clear();
                       }
                     },
                   ),
